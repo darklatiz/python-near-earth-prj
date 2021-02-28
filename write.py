@@ -30,7 +30,7 @@ def write_to_csv(results, filename):
         out_csv.write(",".join(fieldnames))
         out_csv.write('\n')
         for result in results:
-            out_csv.write(f"{result.time_str},{result.distance},{result.velocity},{result.neo.designation},{result.neo.name},{result.neo.diameter},{result.neo.hazardous}")
+            out_csv.write(f"{result.time_str},{result.distance},{result.velocity},{result.neo.designation},{result.neo.name or ''},{result.neo.diameter},{result.neo.hazardous}")
             out_csv.write('\n')
 
 
@@ -46,3 +46,11 @@ def write_to_json(results, filename):
     :param filename: A Path-like object pointing to where the data should be saved.
     """
     # Write the results to a JSON file, following the specification in the instructions.
+    with open(filename, 'w') as json_out_file:
+        if results is None or len(results) <= 0:
+            json.dump([], filename)
+        else:
+            for close_approach in results:
+                data = close_approach.serialize()
+                data['neo'] = close_approach.neo.serialize()
+                print(data)

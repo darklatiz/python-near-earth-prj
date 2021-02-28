@@ -55,6 +55,7 @@ class NEODatabase:
                 neo.set_approaches(approaches_)
                 for approach in approaches_:
                     approach.neo = neo
+
         print(" [*] Database Loaded")
 
     def get_neos_list(self):
