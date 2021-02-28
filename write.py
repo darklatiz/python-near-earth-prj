@@ -48,9 +48,12 @@ def write_to_json(results, filename):
     # Write the results to a JSON file, following the specification in the instructions.
     with open(filename, 'w') as json_out_file:
         if results is None or len(results) <= 0:
-            json.dump([], filename)
+            json.dump([], json_out_file)
         else:
+            data_objs = []
             for close_approach in results:
                 data = close_approach.serialize()
                 data['neo'] = close_approach.neo.serialize()
+                data_objs.append(data)
                 print(data)
+            json.dump(data_objs, json_out_file)
