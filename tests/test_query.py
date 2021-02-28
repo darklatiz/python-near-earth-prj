@@ -117,7 +117,7 @@ class TestQuery(unittest.TestCase):
         end_date = datetime.date(2020, 4, 1)
 
         expected = set(
-            approach for approach in self.approaches
+            approach for approach in self.db.get_approaches_list()
             if approach.time.date() == date
         )
         self.assertGreater(len(expected), 0)
@@ -130,7 +130,7 @@ class TestQuery(unittest.TestCase):
         distance_max = 0.4
 
         expected = set(
-            approach for approach in self.approaches
+            approach for approach in self.db.get_approaches_list()
             if approach.distance <= distance_max
         )
         self.assertGreater(len(expected), 0)
@@ -144,7 +144,7 @@ class TestQuery(unittest.TestCase):
         distance_min = 0.1
 
         expected = set(
-            approach for approach in self.approaches
+            approach for approach in self.db.get_approaches_list()
             if distance_min <= approach.distance
         )
         self.assertGreater(len(expected), 0)
@@ -159,7 +159,7 @@ class TestQuery(unittest.TestCase):
         distance_min = 0.1
 
         expected = set(
-            approach for approach in self.approaches
+            approach for approach in self.db.get_approaches_list()
             if distance_min <= approach.distance <= distance_max
         )
         self.assertGreater(len(expected), 0)
@@ -184,7 +184,7 @@ class TestQuery(unittest.TestCase):
         velocity_max = 20
 
         expected = set(
-            approach for approach in self.approaches
+            approach for approach in self.db.get_approaches_list()
             if approach.velocity <= velocity_max
         )
         self.assertGreater(len(expected), 0)
@@ -198,7 +198,7 @@ class TestQuery(unittest.TestCase):
         velocity_min = 10
 
         expected = set(
-            approach for approach in self.approaches
+            approach for approach in self.db.get_approaches_list()
             if velocity_min <= approach.velocity
         )
         self.assertGreater(len(expected), 0)
@@ -213,7 +213,7 @@ class TestQuery(unittest.TestCase):
         velocity_min = 10
 
         expected = set(
-            approach for approach in self.approaches
+            approach for approach in self.db.get_approaches_list()
             if velocity_min <= approach.velocity <= velocity_max
         )
         self.assertGreater(len(expected), 0)
@@ -238,7 +238,7 @@ class TestQuery(unittest.TestCase):
         diameter_max = 1.5
 
         expected = set(
-            approach for approach in self.approaches
+            approach for approach in self.db.get_approaches_list()
             if approach.neo.diameter <= diameter_max
         )
         self.assertGreater(len(expected), 0)
@@ -252,7 +252,7 @@ class TestQuery(unittest.TestCase):
         diameter_min = 0.5
 
         expected = set(
-            approach for approach in self.approaches
+            approach for approach in self.db.get_approaches_list()
             if diameter_min <= approach.neo.diameter
         )
         self.assertGreater(len(expected), 0)
@@ -267,7 +267,7 @@ class TestQuery(unittest.TestCase):
         diameter_min = 0.5
 
         expected = set(
-            approach for approach in self.approaches
+            approach for approach in self.db.get_approaches_list()
             if diameter_min <= approach.neo.diameter <= diameter_max
         )
         self.assertGreater(len(expected), 0)
@@ -290,7 +290,7 @@ class TestQuery(unittest.TestCase):
 
     def test_query_with_hazardous(self):
         expected = set(
-            approach for approach in self.approaches
+            approach for approach in self.db.get_approaches_list()
             if approach.neo.hazardous
         )
         self.assertGreater(len(expected), 0)
@@ -302,7 +302,7 @@ class TestQuery(unittest.TestCase):
 
     def test_query_with_not_hazardous(self):
         expected = set(
-            approach for approach in self.approaches
+            approach for approach in self.db.get_approaches_list()
             if not approach.neo.hazardous
         )
         self.assertGreater(len(expected), 0)
@@ -321,7 +321,7 @@ class TestQuery(unittest.TestCase):
         distance_max = 0.4
 
         expected = set(
-            approach for approach in self.approaches
+            approach for approach in self.db.get_approaches_list()
             if approach.time.date() == date
             and approach.distance <= distance_max
         )
@@ -336,7 +336,7 @@ class TestQuery(unittest.TestCase):
         distance_min = 0.1
 
         expected = set(
-            approach for approach in self.approaches
+            approach for approach in self.db.get_approaches_list()
             if approach.time.date() == date
             and distance_min <= approach.distance
         )

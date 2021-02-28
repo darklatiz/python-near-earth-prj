@@ -200,7 +200,7 @@ def create_filters(date=None, start_date=None, end_date=None,
     if diameter_max is not None:
         filters.append(DiameterFilter(operator.le, diameter_max))
     if hazardous is not None:
-        filters.append(HazardousFilter(operator.truth, hazardous))
+        filters.append(HazardousFilter(operator.eq, hazardous))
 
     return filters
 
@@ -214,5 +214,8 @@ def limit(iterator, n=None):
     :param n: The maximum number of values to produce.
     :yield: The first (at most) `n` values from the iterator.
     """
-    # TODO: Produce at most `n` values from the given iterator.
-    return iterator
+    # Produce at most `n` values from the given iterator.
+    for step, v in enumerate(iterator):
+        yield v
+        if step + 1 == n:
+            break
