@@ -10,3 +10,6 @@
 ## URLS
 - https://docs.python.org/3/library/itertools.html#itertools.islice
 - https://realpython.com/
+
+## pydocstyle
+pydocstyle file.py
