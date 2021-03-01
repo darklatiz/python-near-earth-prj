@@ -13,3 +13,6 @@
 
 ## pydocstyle
 pydocstyle file.py
+
+## pycodestyle
+pycodestyle file.py
