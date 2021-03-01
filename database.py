@@ -59,12 +59,22 @@ class NEODatabase:
         print(" [*] Database Loaded")
 
     def get_neos_list(self):
+        """Create a kist of the NEOs Based on the source.
+
+        The source is a dictionary, this function will create a list of all the existing NEOs.
+        The list will be created the first time we call this function
+        """
         if len(self._neos_list) <= 0:
             for des, neo in self._neos.items():
                 self._neos_list.append(neo)
         return self._neos_list
 
     def get_approaches_list(self):
+        """Based on the approaches dictionary this function will create a list.
+
+        The list will have all the possible approaches
+        The list will be created the first time we call this function
+        """
         if len(self._approaches_list) <= 0:
             for des, apps in self._approaches.items():
                 for app in apps:

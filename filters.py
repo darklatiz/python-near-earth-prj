@@ -72,6 +72,7 @@ class AttributeFilter:
         raise UnsupportedCriterionError
 
     def __repr__(self):
+        """Create a representation for the Filter."""
         return f"{self.__class__.__name__}(op=operator.{self.op.__name__}, value={self.value})"
 
 
@@ -79,13 +80,16 @@ class DateFilter(AttributeFilter):
     """Return Close Approaches date."""
 
     def __init__(self, op, value):
+        """Create an instance of the date filter."""
         super().__init__(op, value)
 
     @classmethod
     def get(cls, approach):
+        """Get the date time of the approach to be checked using the filter."""
         return approach.time.date()
 
     def __str__(self):
+        """Get the string representation of the Date Filter."""
         return f"DateFilter(Operator={self.op.__name__}, value={self.value})"
 
 
@@ -93,13 +97,16 @@ class DistanceFilter(AttributeFilter):
     """Return Close Approaches distance."""
 
     def __init__(self, op, value):
+        """Create an instance of the distance filter."""
         super().__init__(op, value)
 
     @classmethod
     def get(cls, approach):
+        """Get the distance of the approach to be checked using the filter."""
         return approach.distance
 
     def __str__(self):
+        """Get the string representation of the Distance Filter."""
         return f"DistanceFilter(Operator={self.op.__name__}, value={self.value})"
 
 
@@ -107,13 +114,16 @@ class VelocityFilter(AttributeFilter):
     """Return Close Approaches Velocity."""
 
     def __init__(self, op, value):
+        """Create an instance of the Velocity filter."""
         super().__init__(op, value)
 
     @classmethod
     def get(cls, approach):
+        """Get the Velocity of the approach to be checked using the filter."""
         return approach.velocity
 
     def __str__(self):
+        """Get the string representation of the Velocity Filter."""
         return f"VelocityFilter(Operator={self.op.__name__}, value={self.value})"
 
 
@@ -121,13 +131,16 @@ class DiameterFilter(AttributeFilter):
     """Return Close NEO's Diameter."""
 
     def __init__(self, op, value):
+        """Create an instance of the Diameter filter."""
         super().__init__(op, value)
 
     @classmethod
     def get(cls, approach):
+        """Get the Diameter of the NEO to be checked using the filter."""
         return approach.neo.diameter
 
     def __str__(self):
+        """Get the string representation of the Diameter Filter."""
         return f"DiameterFilter(Operator={self.op.__name__}, value={self.value})"
 
 
@@ -135,13 +148,16 @@ class HazardousFilter(AttributeFilter):
     """Return Close NEO's Diameter."""
 
     def __init__(self, op, value):
+        """Create an instance of the Hazardous filter."""
         super().__init__(op, value)
 
     @classmethod
     def get(cls, approach):
+        """Get if the NEO is Hazardous using the filter."""
         return approach.neo.hazardous
 
     def __str__(self):
+        """Get the string representation of the Hazardous Filter."""
         return f"HazardousFilter(Operator={self.op.__name__}, value={self.value})"
 
 
@@ -202,7 +218,7 @@ def create_filters(date=None, start_date=None, end_date=None,
     if hazardous is not None:
         filters.append(HazardousFilter(operator.eq, hazardous))
 
-    return filters
+    return tuple(filters)
 
 
 def limit(iterator, n=None):

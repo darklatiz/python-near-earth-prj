@@ -87,7 +87,7 @@ class TestLoadApproaches(unittest.TestCase):
     def get_first_approach_or_none(cls):
         try:
             # Don't __getitem__, in case it's a set or a stream.
-            return next(iter(cls.approaches))
+            return next(iter(approach for fes, approach in cls.approaches.items()))
         except StopIteration:
             return None
 
@@ -97,25 +97,29 @@ class TestLoadApproaches(unittest.TestCase):
     def test_approaches_contain_close_approaches(self):
         approach = self.get_first_approach_or_none()
         self.assertIsNotNone(approach)
-        self.assertIsInstance(approach, CloseApproach)
+        self.assertIsInstance(approach[0], CloseApproach)
 
     def test_approaches_contain_all_elements(self):
-        self.assertEqual(len(self.approaches), 4700)
+        total_approaches = []
+        for des, apps in self.approaches.items():
+            for app in apps:
+                total_approaches.append(app)
+        self.assertEqual(len(total_approaches), 4700)
 
     def test_approach_time_is_datetime(self):
         approach = self.get_first_approach_or_none()
         self.assertIsNotNone(approach)
-        self.assertIsInstance(approach.time, datetime.datetime)
+        self.assertIsInstance(approach[0].time, datetime.datetime)
 
     def test_approach_distance_is_float(self):
         approach = self.get_first_approach_or_none()
         self.assertIsNotNone(approach)
-        self.assertIsInstance(approach.distance, float)
+        self.assertIsInstance(approach[0].distance, float)
 
     def test_approach_velocity_is_float(self):
         approach = self.get_first_approach_or_none()
         self.assertIsNotNone(approach)
-        self.assertIsInstance(approach.velocity, float)
+        self.assertIsInstance(approach[0].velocity, float)
 
 
 if __name__ == '__main__':

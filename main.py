@@ -49,7 +49,6 @@ from database import NEODatabase
 from filters import create_filters, limit
 from write import write_to_csv, write_to_json
 
-
 # Paths to the root of the project and the `data` subfolder.
 PROJECT_ROOT = pathlib.Path(__file__).parent.resolve()
 DATA_ROOT = PROJECT_ROOT / 'data'
@@ -238,14 +237,13 @@ class NEOShell(cmd.Cmd):
     """Perform the `interactive` subcommand.
 
     This is a `cmd.Cmd` shell - a specialized tool for command-based REPL sessions.
-
     It wraps the `inspect` and `query` parsers to parse flags for those commands
     as if they were supplied at the command line.
-
     The primary purpose of this shell is to allow users to repeatedly perform
     inspect and query commands, while only loading the data (which can be quite
     slow) once.
     """
+
     intro = ("Explore close approaches of near-Earth objects. "
              "Type `help` or `?` to list commands and `exit` to exit.\n")
     prompt = '(neo) '
