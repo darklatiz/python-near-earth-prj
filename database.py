@@ -115,7 +115,7 @@ class NEODatabase:
         neo_ = self._neos_by_name.get(name, None)
         if neo_ is None:
             for n in self.get_neos_list():
-                if n.name == name:
+                if n.nombre == name:
                     self._neos_by_name[name] = n
                     return n
         return neo_

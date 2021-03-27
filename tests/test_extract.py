@@ -55,7 +55,7 @@ class TestLoadNEOs(unittest.TestCase):
         neo = self.neos_by_designation['2019 SC8']
 
         self.assertEqual(neo.designation, '2019 SC8')
-        self.assertEqual(neo.name, None)
+        self.assertEqual(neo.nombre, None)
         self.assertTrue(math.isnan(neo.diameter))
         self.assertEqual(neo.hazardous, False)
 
@@ -64,7 +64,7 @@ class TestLoadNEOs(unittest.TestCase):
         neo = self.neos_by_designation['4581']
 
         self.assertEqual(neo.designation, '4581')
-        self.assertEqual(neo.name, 'Asclepius')
+        self.assertEqual(neo.nombre, 'Asclepius')
         self.assertTrue(math.isnan(neo.diameter))
         self.assertEqual(neo.hazardous, True)
 
@@ -73,7 +73,7 @@ class TestLoadNEOs(unittest.TestCase):
         neo = self.neos_by_designation['2101']
 
         self.assertEqual(neo.designation, '2101')
-        self.assertEqual(neo.name, 'Adonis')
+        self.assertEqual(neo.nombre, 'Adonis')
         self.assertEqual(neo.diameter, 0.6)
         self.assertEqual(neo.hazardous, True)
 

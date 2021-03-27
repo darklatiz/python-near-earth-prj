@@ -30,7 +30,7 @@ def write_to_csv(results, filename):
         out_csv.write(",".join(fieldnames))
         out_csv.write('\n')
         for result in results:
-            out_csv.write(f"{result.time_str},{result.distance},{result.velocity},{result.neo.designation},{result.neo.name or ''},{result.neo.diameter},{result.neo.hazardous}")
+            out_csv.write(f"{result.time_str},{result.distance},{result.velocity},{result.neo.designation},{result.neo.nombre or ''},{result.neo.diameter},{result.neo.hazardous}")
             out_csv.write('\n')
 
 
